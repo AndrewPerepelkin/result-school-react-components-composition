@@ -1,6 +1,6 @@
 import React from "react";
 const Counter = (props) => {
-const {value} = props;
+    const {value} = props;
 
     const formatValue = () => {
         return value === 0 ? "empty" : value;
