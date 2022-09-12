@@ -1,13 +1,13 @@
 import React from "react";
 const Counter = (props) => {
-    // const [value, setValue] = useState(props.value);
+const {value} = props.value;
 
     const formatValue = () => {
-        return props.value === 0 ? "empty" : props.value;
+        return value === 0 ? "empty" : value;
     };
     const getBageClasses = () => {
         let classes = "badge m-2 ";
-        classes += props.value === 0 ? "bg-warning" : "bg-primary";
+        classes += value === 0 ? "bg-warning" : "bg-primary";
         return classes;
     };
 
