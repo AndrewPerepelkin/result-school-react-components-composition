@@ -1,21 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 const Counter = (props) => {
-    const [value, setValue] = useState(props.value);
+    // const [value, setValue] = useState(props.value);
 
     const formatValue = () => {
-        return value === 0 ? "empty" : value;
+        return props.value === 0 ? "empty" : props.value;
     };
     const getBageClasses = () => {
         let classes = "badge m-2 ";
-        classes += value === 0 ? "bg-warning" : "bg-primary";
+        classes += props.value === 0 ? "bg-warning" : "bg-primary";
         return classes;
-    };
-
-    const handleIncrement = () => {
-        setValue((prevState) => prevState + 1);
-    };
-    const handleDecrement = () => {
-        setValue((prevState) => prevState - 1);
     };
 
     return (
@@ -24,15 +17,21 @@ const Counter = (props) => {
             <span className={getBageClasses()}>{formatValue()}</span>
             <button
                 className='btn btn-primary btn-sm m-2'
-                onClick={handleIncrement}
+                onClick={() => props.onIncrement(props.id)}
             >
                 +
             </button>
             <button
                 className='btn btn-primary btn-sm m-2'
-                onClick={handleDecrement}
+                onClick={() => props.onDecrement(props.id)}
             >
                 -
+            </button>
+            <button
+                className='btn btn-danger btn-sm m-2'
+                onClick={() => props.onDelete(props.id)}
+            >
+                Удалить
             </button>
         </div>
     );
