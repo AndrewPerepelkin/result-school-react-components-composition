@@ -16,10 +16,18 @@ const CounterList = () => {
     setCounters(prevState => prevState.filter(c => c.id !== id));
   };  
   const handleIncrement = (id) => {
-    setCounters(prevState => prevState.map(c => (c.id === id) ? {value:c.value++, ...c} : c));
+    const updateState = counters.map(count => {
+      if (count.id === id) count.value++;
+      return count;
+    });
+    setCounters(updateState);
   };
   const handleDecrement = (id) => {
-    setCounters(prevState => prevState.map(c => (c.id === id) ? {value:c.value--, ...c} : c));
+    const updateState = counters.map(count => {
+      if (count.id === id) count.value--;
+      return count;
+    });
+    setCounters(updateState);
   };
 
   const handleReset = () => setCounters(initialState);
