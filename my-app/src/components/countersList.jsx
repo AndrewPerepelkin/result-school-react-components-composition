@@ -16,29 +16,31 @@ const CounterList = () => {
     setCounters(prevState => prevState.filter(c => c.id !== id));
   };  
   const handleIncrement = (id) => {
-    setCounters(prevState => prevState.map(c => {
-      if (c.id === id) {c.value++};
-      return c;
-    }));
+    setCounters(prevState => prevState.map(c => (c.id === id) ? {value:c.value++, ...c} : c));
   };
   const handleDecrement = (id) => {
-    setCounters(prevState => prevState.map(c => {
-      if (c.id === id) {c.value--};
-      return c;
-    }));
+    setCounters(prevState => prevState.map(c => (c.id === id) ? {value:c.value--, ...c} : c));
   };
 
+  const handleReset = () => setCounters(initialState);
+  
   return (
     <>
       {counters.map(count => (
         <Counter 
           key={count.id} 
           onDelete={handleDelete} 
-          onIncrement={handleIncrement} 
-          onDecrement={handleDecrement} 
+          onIncrement={handleIncrement}
+          onDecrement={handleDecrement}
           {...count}
           />
       ))}
+      <button
+        className='btn btn-primary m-2'
+        onClick={handleReset}
+      >
+        Сброс
+      </button>
     </>
   )
 }
